@@ -38,8 +38,9 @@ button {
 }
 
 .nav-link {
-  font-szie: 18px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
