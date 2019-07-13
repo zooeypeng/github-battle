@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { fetchPopularRepos } from '../utils/api'
 
 function LanguageNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
@@ -7,12 +8,12 @@ function LanguageNav({ selected, onUpdateLanguage }) {
   return (
     <ul className='flex-center'>
       {languages.map((language, index) => (
-        <li key={index}>
+        <li key={ index }>
           <button
             className='btn-clear nav-link'
             onClick={() => onUpdateLanguage(language)}
-            style={language === selected ? { color: 'goldenrod' } : null}>
-            {language}
+            style={ language === selected ? { color: 'goldenrod' } : null }>
+            { language }
           </button>
         </li>
       ))}
@@ -30,27 +31,57 @@ export default class Popular extends React.Component {
     super(props)
 
     this.state = {
-      selectedLanguage: 'All'
+      selectedLanguage: 'All',
+      repos: null,
+      error: null
     }
 
     this.updateLanguage = this.updateLanguage.bind(this)
+    this.isLoading = this.isLoading.bind(this)
   }
 
-  updateLanguage (selectedLanguage) {
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage)
+  }
+
+  updateLanguage(selectedLanguage) {
     this.setState({
-      selectedLanguage
+      selectedLanguage,
+      repos: null,
+      error: null
     })
+
+    fetchPopularRepos(selectedLanguage)
+      .then((repos) => this.setState({
+        repos,
+      }))
+      .catch((err) => {
+        console.warn('Error fetching repos: ', err)
+        this.setState({
+          error: 'This is an error when fetching the repositories.'
+        })
+      })
+  }
+
+  isLoading() {
+    return this.state.repos === null && this.state.error === null
   }
 
   render() {
-    const { selectedLanguage } = this.state
+    const { selectedLanguage, repos, error } = this.state
     
     return (
       <React.Fragment>
         <LanguageNav
-          selected={selectedLanguage}
-          onUpdateLanguage={this.updateLanguage}
+          selected={ selectedLanguage }
+          onUpdateLanguage={ this.updateLanguage }
         />
+
+        { this.isLoading() && <p>LOADING</p> }
+
+        { error && <p>{ error }</p> }
+
+        { repos && <pre>{ JSON.stringify(repos, null, 2) }</pre> }
       </React.Fragment>
     )
   }
