@@ -1,2 +1,2 @@
 # Github Battle
-This project is from Tyler McGinnis
+This project is from [Tyler McGinnis](@tylermcginnis)

@@ -1,5 +1,24 @@
 import React from 'react'
 
+function LanguageNav({ selected, onUpdateLanguage }) {
+  const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
+
+  return (
+    <ul className='flex-center'>
+      {languages.map((language, index) => (
+        <li key={index}>
+          <button
+            className='btn-clear nav-link'
+            onClick={() => onUpdateLanguage(language)}
+            style={language === selected ? { color: 'goldenrod' } : null}>
+            {language}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export default class Popular extends React.Component {
   constructor(props) {
     super(props)
@@ -18,21 +37,15 @@ export default class Popular extends React.Component {
   }
 
   render() {
-    const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
-
+    const { selectedLanguage } = this.state
+    
     return (
-      <ul className='flex-center'>
-        {languages.map((language, index) => (
-          <li key={index}>
-            <button
-              className='btn-clear nav-link'
-              onClick={() => this.updateLanguage(language)}
-              style={language === this.state.selectedLanguage ? { color: 'goldenrod' } : null}>
-              {language}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <React.Fragment>
+        <LanguageNav
+          selected={selectedLanguage}
+          onUpdateLanguage={this.updateLanguage}
+        />
+      </React.Fragment>
     )
   }
 }
