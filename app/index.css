@@ -60,6 +60,12 @@ button {
   margin: 16px;
 }
 
+.header-sm {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 10px;
+}
+
 .center-text {
   text-align: center;
 }
@@ -112,4 +118,27 @@ button {
 
 .repo a {
   text-decoration: none;
+}
+
+.instruction-container {
+  margin: 100px 0;
+}
+
+.container-sm {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.battle-instructions {
+  padding: 0;
+}
+
+.battle-instructions li {
+  flex: 1;
+  min-width: 300px;
+}
+
+.battle-instructions svg {
+  padding: 40px;
+  border-radius: 3px;
 }
