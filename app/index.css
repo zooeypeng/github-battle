@@ -159,6 +159,10 @@ button {
   padding: 10px;
 }
 
+.player-container {
+  margin: 80px 0;
+}
+
 .player-label {
   margin: 5px 0;
   padding: 0 16px;
@@ -185,6 +189,19 @@ button {
   margin-left: 10px;
 }
 
+.player-info {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.player-info .link {
+  margin-left: 10px;
+}
+
 .btn {
   text-decoration: none;
   max-width: 200px;
@@ -207,6 +224,13 @@ button {
   cursor: not-allowed;
 }
 
-.player-container {
-  margin: 80px 0;
+.avatar-sm {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid goldenrod;
+}
+
+.btn-reset {
+  cursor: pointer;
 }
