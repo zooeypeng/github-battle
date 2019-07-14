@@ -5,10 +5,10 @@ import { GiEgyptianWalk, GiBeamsAura, GiCrenelCrown } from 'react-icons/gi'
 function Instructions() {
   return (
     <div className='instruction-contaienr'>
-      <h1 className='header-lg center-text'>
+      <h1 className='header-lg text-center'>
         Instructions
       </h1>
-      <ol className='container-sm grid center-text battle-instructions'>
+      <ol className='container-sm grid text-center battle-instructions'>
         <li>
           <GiEgyptianWalk
             className='bg-light'
@@ -90,7 +90,7 @@ class PlayerInput extends React.Component {
           />
           <button
             type='submit'
-            className='btn btn-dark center-text'
+            className='btn btn-dark text-center'
             disabled={ !this.state.username }>
             Submit
           </button>
@@ -106,14 +106,48 @@ PlayerInput.propTypes = {
 }
 
 export default class Battle extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      playerOne: null,
+      playerTwo: null
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(id, player) {
+    this.setState({
+      [id]: player // es6 property name
+    })
+  }
+
   render() {
+    const { playerOne, playerTwo } = this.state
     return (
       <React.Fragment>
         <Instructions />
-        <PlayerInput
-          onSubmit={ (value) => { console.log(value) } }
-          label='Label'
-        />
+        <div className='player-container'>
+          <h1 className='text-center header-lg'>
+            Players
+          </h1>
+          <div className='row space-around'>
+            {playerOne === null && (
+              <PlayerInput
+                label='Player One'
+                onSubmit={(player) => this.handleSubmit('playerOne', player)}
+              />
+            )}
+
+            {playerTwo === null && (
+              <PlayerInput
+                label='Player Two'
+                onSubmit={(player) => this.handleSubmit('playerTwo', player)}
+              />
+            )}
+          </div>
+        </div>
       </React.Fragment>
     )
   }

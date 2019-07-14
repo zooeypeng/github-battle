@@ -126,7 +126,7 @@ export default class Popular extends React.Component {
           this.setState(({ repos }) => ({
             repos: {
               ...repos,
-              [selectedLanguage]: data // marge them
+              [selectedLanguage]: data
             }
           }))
         })

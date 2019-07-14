@@ -76,7 +76,7 @@ button {
   margin: 10px;
 }
 
-.center-text {
+.text-center {
   text-align: center;
 }
 
@@ -161,7 +161,8 @@ button {
 
 .player-label {
   margin: 5px 0;
-  font-size: 16px;
+  padding: 0 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 
@@ -204,4 +205,8 @@ button {
   background: floralwhite;
   color: cadetblue;
   cursor: not-allowed;
+}
+
+.player-container {
+  margin: 80px 0;
 }
