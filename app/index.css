@@ -203,14 +203,16 @@ button {
 }
 
 .btn {
+  display: block;
   text-decoration: none;
-  max-width: 200px;
+  min-width: 200px;
   padding: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1px;
   border-radius: 3px;
   border: 1px solid cadetblue;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .btn-dark {
@@ -224,13 +226,21 @@ button {
   cursor: not-allowed;
 }
 
+.btn-reset {
+  cursor: pointer;
+  background: goldenrod;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.btn-space {
+  margin: 40px auto;
+}
+
 .avatar-sm {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   border: 3px solid goldenrod;
-}
-
-.btn-reset {
-  cursor: pointer;
 }
