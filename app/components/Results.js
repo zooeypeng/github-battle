@@ -101,27 +101,40 @@ export default class Results extends React.Component {
     }
 
     return(
-      <div className='grid space-around container-sm'>
-        <Card
-          header={ winner.score === loser.score ? 'Tie' : 'Winner' }
-          avatar={ winner.profile.avatar_url }
-          href={ winner.profile.html_url }
-          name={ winner.profile.login }
-          subheader={ `Score: ${winner.score.toLocaleString()}` }>
-          
-          <ProfileList profile={ winner.profile } />
-        </Card>
-    
-        <Card
-          header={ loser.score === winner.score ? 'Tie' : 'Loser' }
-          avatar={ loser.profile.avatar_url }
-          href={ loser.profile.html_url }
-          name={ loser.profile.login }
-          subheader={ `Score: ${loser.score.toLocaleString()}` }>
+      <React.Fragment>
+        <div className='grid space-around container-sm'>
+          <Card
+            header={ winner.score === loser.score ? 'Tie' : 'Winner' }
+            avatar={ winner.profile.avatar_url }
+            href={ winner.profile.html_url }
+            name={ winner.profile.login }
+            subheader={ `Score: ${winner.score.toLocaleString()}` }>
+            
+            <ProfileList profile={ winner.profile } />
+          </Card>
+      
+          <Card
+            header={ loser.score === winner.score ? 'Tie' : 'Loser' }
+            avatar={ loser.profile.avatar_url }
+            href={ loser.profile.html_url }
+            name={ loser.profile.login }
+            subheader={ `Score: ${loser.score.toLocaleString()}` }>
 
-          <ProfileList profile={ loser.profile } />
-        </Card>
-      </div>
+            <ProfileList profile={ loser.profile } />
+          </Card>
+        </div>
+        <button
+          className='btn btn-dark btn-space'
+          onClick={ this.props.onReset }>
+          Reset
+        </button>
+      </React.Fragment>
     )
   }
+}
+
+Results.propTypes = {
+  playerOne: PropTypes.string.isRequired,
+  playerTwo: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired
 }
