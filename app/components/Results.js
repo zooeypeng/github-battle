@@ -1,6 +1,7 @@
 import React from 'react'
 import { battle } from '../utils/api'
 import { GoMarkGithub, GoGlobe, GoKeyboard, GoRepoForked, GoTelescope } from "react-icons/go"
+import Card from './Card'
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -49,26 +50,15 @@ export default class Results extends React.Component {
     }
 
     return(
-      <div class='grid space-around container-sm'>
-        <div class='card bg-light'>
-          <h2 class='header-lg text-center'>
-            { winner.score === loser.score ? 'Tie' : 'Winner' }
-          </h2>
-          <img
-            className='avatar'
-            src={ winner.profile.avatar_url }
-            alt={ `Avatar for ${winner.profile.login}` }
-          />
-          <h3 className='text-center'>
-            Score: { winner.score.toLocaleString() }
-          </h3>
-          <h4 className='text-center'>
-            <a className='link'
-              href='{ winner.profile.html_url'>
-              { winner.profile.login }
-            </a>
-          </h4>
-          <ul class='card-list'>
+      <div className='grid space-around container-sm'>
+        <Card
+          header={ winner.score === loser.score ? 'Tie' : 'Winner' }
+          avatar={ winner.profile.avatar_url }
+          href={ winner.profile.html_url }
+          name={ winner.profile.login }
+          subheader={ `Score: ${winner.score.toLocaleString()}` }>
+          
+          <ul className='card-list'>
             <li>
               <GoMarkGithub
                 color='rebeccapurple'
@@ -109,27 +99,16 @@ export default class Results extends React.Component {
               { winner.profile.following.toLocaleString() } following
             </li>
           </ul>
-        </div>
-      
-        <div class='card bg-light'>
-          <h2 class='header-lg text-center'>
-            { loser.score === winner.score ? 'Tie' : 'Loser' }
-          </h2>
-          <img
-            className='avatar'
-            src={ loser.profile.avatar_url }
-            alt={ `Avatar for ${loser.profile.login}` }
-          />
-          <h3 className='text-center'>
-            Score: { loser.score.toLocaleString() }
-          </h3>
-          <h4 className='text-center'>
-            <a className='link'
-              href='{ loser.profile.html_url'>
-              { loser.profile.login }
-            </a>
-          </h4>
-          <ul class='card-list'>
+        </Card>
+    
+        <Card
+          header={ loser.score === winner.score ? 'Tie' : 'Loser' }
+          avatar={ loser.profile.avatar_url }
+          href={ loser.profile.html_url }
+          name={ loser.profile.login }
+          subheader={ `Score: ${loser.score.toLocaleString()}` }>
+
+          <ul className='card-list'>
             <li>
               <GoMarkGithub
                 color='rebeccapurple'
@@ -170,7 +149,7 @@ export default class Results extends React.Component {
               { loser.profile.following.toLocaleString() } following
             </li>
           </ul>
-        </div>
+        </Card>
       </div>
     )
   }
