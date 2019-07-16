@@ -2,6 +2,57 @@ import React from 'react'
 import { battle } from '../utils/api'
 import { GoMarkGithub, GoGlobe, GoKeyboard, GoRepoForked, GoTelescope } from "react-icons/go"
 import Card from './Card'
+import PropTypes from 'prop-types'
+
+function ProfileList ({ profile }) {
+  return (
+    <ul className='card-list'>
+      <li>
+        <GoMarkGithub
+          color='rebeccapurple'
+          size={ 14 }
+        />
+        { profile.name }
+      </li>
+      {profile.location && (
+        <li>
+          <GoGlobe
+            color='rebeccapurple'
+            size={ 14 }
+          />
+          { profile.location }
+        </li>
+      )}
+      {profile.company && (
+        <li>
+          <GoKeyboard
+            color='rebeccapurple'
+            size={ 14 }
+          />
+          { profile.company }
+        </li>
+      )}
+      <li>
+        <GoRepoForked
+          color='rebeccapurple'
+          size={ 14 }
+        />
+        { profile.followers.toLocaleString() } followers
+      </li>
+      <li>
+        <GoTelescope
+          color='rebeccapurple'
+          size={ 14 }
+        />
+        { profile.following.toLocaleString() } following
+      </li>
+    </ul>
+  )
+}
+
+ProfileList.propTypes = {
+  profile: PropTypes.object.isRequired
+}
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -58,47 +109,7 @@ export default class Results extends React.Component {
           name={ winner.profile.login }
           subheader={ `Score: ${winner.score.toLocaleString()}` }>
           
-          <ul className='card-list'>
-            <li>
-              <GoMarkGithub
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { winner.profile.name }
-            </li>
-            {winner.profile.location && (
-              <li>
-                <GoGlobe
-                  color='rebeccapurple'
-                  size={ 14 }
-                />
-                { winner.profile.location }
-              </li>
-            )}
-            {winner.profile.company && (
-              <li>
-                <GoKeyboard
-                  color='rebeccapurple'
-                  size={ 14 }
-                />
-                { winner.profile.company }
-              </li>
-            )}
-            <li>
-              <GoRepoForked
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { winner.profile.followers.toLocaleString() } followers
-            </li>
-            <li>
-              <GoTelescope
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { winner.profile.following.toLocaleString() } following
-            </li>
-          </ul>
+          <ProfileList profile={ winner.profile } />
         </Card>
     
         <Card
@@ -108,47 +119,7 @@ export default class Results extends React.Component {
           name={ loser.profile.login }
           subheader={ `Score: ${loser.score.toLocaleString()}` }>
 
-          <ul className='card-list'>
-            <li>
-              <GoMarkGithub
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { loser.profile.name }
-            </li>
-            {loser.profile.location && (
-              <li>
-                <GoGlobe
-                  color='rebeccapurple'
-                  size={ 14 }
-                />
-                { loser.profile.location }
-              </li>
-            )}
-            {loser.profile.company && (
-              <li>
-                <GoKeyboard
-                  color='rebeccapurple'
-                  size={ 14 }
-                />
-                { loser.profile.company }
-              </li>
-            )}
-            <li>
-              <GoRepoForked
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { loser.profile.followers.toLocaleString() } followers
-            </li>
-            <li>
-              <GoTelescope
-                color='rebeccapurple'
-                size={ 14 }
-              />
-              { loser.profile.following.toLocaleString() } following
-            </li>
-          </ul>
+          <ProfileList profile={ loser.profile } />
         </Card>
       </div>
     )
