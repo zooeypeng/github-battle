@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api'
 import { TiUser, TiStarFullOutline, TiFlowChildren, TiSpanner } from 'react-icons/ti'
 import Card from './Card'
+import Loading from './Loading'
 
 function LanguageNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
@@ -146,7 +147,7 @@ export default class Popular extends React.Component {
           onUpdateLanguage={ this.updateLanguage }
         />
 
-        { this.isLoading() && <p>LOADING</p> }
+        { this.isLoading() && <Loading text='Fetching Repos' /> }
 
         { error && <p className='text-center error'>{ error }</p> }
 
