@@ -4,6 +4,7 @@ import { fetchPopularRepos } from '../utils/api'
 import { TiUser, TiStarFullOutline, TiFlowChildren, TiSpanner } from 'react-icons/ti'
 import Card from './Card'
 import Loading from './Loading'
+import Tooltip from './Tooltip'
 
 function LanguageNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
@@ -46,13 +47,15 @@ function ReposGrid({ repos }) {
               
               <ul className='card-list'>
                 <li>
-                  <TiUser
-                    color='cadetblue'
-                    size={ 16 }
-                  />
-                  <a href={ `http://github.com/${login}` }>
-                    { login }
-                  </a>
+                  <Tooltip text='Github Username'>
+                    <TiUser
+                      color='cadetblue'
+                      size={ 16 }
+                      />
+                    <a href={ `http://github.com/${login}` }>
+                      { login }
+                    </a>
+                  </Tooltip>
                 </li>
                 <li>
                   <TiStarFullOutline

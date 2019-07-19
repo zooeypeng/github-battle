@@ -4,6 +4,7 @@ import { GoMarkGithub, GoGlobe, GoKeyboard, GoRepoForked, GoTelescope } from "re
 import Card from './Card'
 import PropTypes from 'prop-types'
 import Loading from './Loading'
+import Tooltip from './Tooltip'
 
 function ProfileList ({ profile }) {
   return (
@@ -17,20 +18,24 @@ function ProfileList ({ profile }) {
       </li>
       {profile.location && (
         <li>
-          <GoGlobe
-            color='rebeccapurple'
-            size={ 14 }
-          />
-          { profile.location }
+          <Tooltip text="User's Location">
+            <GoGlobe
+              color='rebeccapurple'
+              size={ 14 }
+            />
+            { profile.location }
+          </Tooltip>
         </li>
       )}
       {profile.company && (
         <li>
-          <GoKeyboard
-            color='rebeccapurple'
-            size={ 14 }
-          />
-          { profile.company }
+          <Tooltip text="User's Company">
+            <GoKeyboard
+              color='rebeccapurple'
+              size={ 14 }
+            />
+            { profile.company }
+          </Tooltip>
         </li>
       )}
       <li>
