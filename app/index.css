@@ -20,6 +20,12 @@ button {
   outline: none;
 }
 
+.dark {
+  background: black;
+  color: darkgray;
+  min-height: 100%;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -35,6 +41,7 @@ button {
 .btn-clear {
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .nav-link {
