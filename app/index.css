@@ -225,7 +225,7 @@ button {
 .btn {
   display: block;
   text-decoration: none;
-  min-width: 200px;
+  width: 240px;
   padding: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1px;

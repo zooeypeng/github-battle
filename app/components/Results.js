@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { battle } from '../utils/api'
+import queryString from 'query-string'
 import { GoMarkGithub, GoGlobe, GoKeyboard, GoRepoForked, GoTelescope } from "react-icons/go"
 import Card from './Card'
 import PropTypes from 'prop-types'
@@ -11,8 +13,8 @@ function ProfileList ({ profile }) {
     <ul className='card-list'>
       <li>
         <GoMarkGithub
-          color='rebeccapurple'
-          size={ 14 }
+          color='rosybrown'
+          size={ 15 }
         />
         { profile.name }
       </li>
@@ -20,8 +22,8 @@ function ProfileList ({ profile }) {
         <li>
           <Tooltip text="User's Location">
             <GoGlobe
-              color='rebeccapurple'
-              size={ 14 }
+              color='rosybrown'
+              size={ 15 }
             />
             { profile.location }
           </Tooltip>
@@ -31,8 +33,8 @@ function ProfileList ({ profile }) {
         <li>
           <Tooltip text="User's Company">
             <GoKeyboard
-              color='rebeccapurple'
-              size={ 14 }
+              color='rosybrown'
+              size={ 15 }
             />
             { profile.company }
           </Tooltip>
@@ -40,15 +42,15 @@ function ProfileList ({ profile }) {
       )}
       <li>
         <GoRepoForked
-          color='rebeccapurple'
-          size={ 14 }
+          color='rosybrown'
+          size={ 15 }
         />
         { profile.followers.toLocaleString() } followers
       </li>
       <li>
         <GoTelescope
-          color='rebeccapurple'
-          size={ 14 }
+          color='rosybrown'
+          size={ 15 }
         />
         { profile.following.toLocaleString() } following
       </li>
@@ -73,7 +75,7 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props
+    const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
 
     battle([playerOne, playerTwo])
       .then((players) => {
@@ -129,18 +131,12 @@ export default class Results extends React.Component {
             <ProfileList profile={ loser.profile } />
           </Card>
         </div>
-        <button
-          className='btn btn-dark btn-space'
-          onClick={ this.props.onReset }>
+        <Link
+          to='/battle'
+          className='btn btn-dark btn-space text-center'>
           Reset
-        </button>
+        </Link>
       </React.Fragment>
     )
   }
-}
-
-Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
 }

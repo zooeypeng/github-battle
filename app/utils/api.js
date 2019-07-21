@@ -38,8 +38,8 @@ function getStartCount(repos) {
   return repos.reduce((count, { stargazers_count }) => count + stargazers_count, 0)
 }
 
-function calculateScore(followers, repos) {
-  return (followers * 3) + getStartCount(repos)
+function calculateScore(followers, following, repos) {
+  return (followers * 3) + getStartCount(repos) + (following * 2)
 }
 
 function getPlayer(player) {
@@ -48,7 +48,7 @@ function getPlayer(player) {
     getRepos(player)
   ]).then(([profile, repos]) => ({
     profile,
-    score: calculateScore(profile.followers, repos)
+    score: calculateScore(profile.followers, profile.following, repos)
   }))
 }
 

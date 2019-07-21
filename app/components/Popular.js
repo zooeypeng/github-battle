@@ -66,7 +66,7 @@ function ReposGrid({ repos }) {
                 </li>
                 <li>
                   <TiFlowChildren
-                    color='midnightblue'
+                    color='sienna'
                     size={ 16 }
                   />
                   { forks.toLocaleString() } forks
