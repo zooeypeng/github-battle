@@ -44,6 +44,10 @@ button {
   cursor: pointer;
 }
 
+.nav li {
+  margin-left: 10px;
+}
+
 .nav-link {
   font-size: 18px;
   font-weight: bold;
@@ -69,6 +73,10 @@ button {
 
 .space-around {
   justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .header-lg {
