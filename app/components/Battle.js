@@ -46,6 +46,11 @@ function Instructions() {
 }
 
 class PlayerInput extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired
+  }
+
   state = {
     username: ''
   }
@@ -92,11 +97,6 @@ class PlayerInput extends React.Component {
       </form>
     )
   }
-}
-
-PlayerInput.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
 }
 
 function PlayerPreview({ username, onReset, label }) {
